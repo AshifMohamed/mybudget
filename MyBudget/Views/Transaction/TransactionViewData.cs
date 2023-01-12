@@ -12,8 +12,6 @@ namespace MyBudget.Views.Transaction
         {
             INCOME,
             EXPENSE,
-            RECEIVABLE,
-            PAYABALE,
             RECURRING_INCOME,
             RECURRING_EXPENSE
         }

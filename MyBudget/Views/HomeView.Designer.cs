@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.pnl_menu = new System.Windows.Forms.Panel();
-            this.btn_contact = new System.Windows.Forms.Button();
+            this.btn_budget = new System.Windows.Forms.Button();
             this.btn_category = new System.Windows.Forms.Button();
             this.btn_transaction = new System.Windows.Forms.Button();
-            this.btn_dashboard = new System.Windows.Forms.Button();
             this.pnl_logo = new System.Windows.Forms.Panel();
             this.lbl_logo = new System.Windows.Forms.Label();
             this.pnl_titlebar = new System.Windows.Forms.Panel();
@@ -49,10 +48,9 @@
             // pnl_menu
             // 
             this.pnl_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.pnl_menu.Controls.Add(this.btn_contact);
+            this.pnl_menu.Controls.Add(this.btn_budget);
             this.pnl_menu.Controls.Add(this.btn_category);
             this.pnl_menu.Controls.Add(this.btn_transaction);
-            this.pnl_menu.Controls.Add(this.btn_dashboard);
             this.pnl_menu.Controls.Add(this.pnl_logo);
             this.pnl_menu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnl_menu.Location = new System.Drawing.Point(0, 0);
@@ -61,24 +59,24 @@
             this.pnl_menu.TabIndex = 0;
             this.pnl_menu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_navigation_Paint);
             // 
-            // btn_contact
+            // btn_budget
             // 
-            this.btn_contact.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_contact.FlatAppearance.BorderSize = 0;
-            this.btn_contact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_contact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_contact.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_contact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_contact.Location = new System.Drawing.Point(0, 260);
-            this.btn_contact.Name = "btn_contact";
-            this.btn_contact.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btn_contact.Size = new System.Drawing.Size(220, 60);
-            this.btn_contact.TabIndex = 4;
-            this.btn_contact.Text = "Contact";
-            this.btn_contact.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_contact.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_contact.UseVisualStyleBackColor = true;
-            this.btn_contact.Click += new System.EventHandler(this.btn_contact_Click);
+            this.btn_budget.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_budget.FlatAppearance.BorderSize = 0;
+            this.btn_budget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_budget.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_budget.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btn_budget.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_budget.Location = new System.Drawing.Point(0, 200);
+            this.btn_budget.Name = "btn_budget";
+            this.btn_budget.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btn_budget.Size = new System.Drawing.Size(220, 60);
+            this.btn_budget.TabIndex = 5;
+            this.btn_budget.Text = "Budget";
+            this.btn_budget.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_budget.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_budget.UseVisualStyleBackColor = true;
+            this.btn_budget.Click += new System.EventHandler(this.btn_budget_Click);
             // 
             // btn_category
             // 
@@ -88,7 +86,7 @@
             this.btn_category.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_category.ForeColor = System.Drawing.Color.Gainsboro;
             this.btn_category.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_category.Location = new System.Drawing.Point(0, 200);
+            this.btn_category.Location = new System.Drawing.Point(0, 140);
             this.btn_category.Name = "btn_category";
             this.btn_category.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btn_category.Size = new System.Drawing.Size(220, 60);
@@ -107,7 +105,7 @@
             this.btn_transaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_transaction.ForeColor = System.Drawing.Color.Gainsboro;
             this.btn_transaction.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_transaction.Location = new System.Drawing.Point(0, 140);
+            this.btn_transaction.Location = new System.Drawing.Point(0, 80);
             this.btn_transaction.Name = "btn_transaction";
             this.btn_transaction.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btn_transaction.Size = new System.Drawing.Size(220, 60);
@@ -117,25 +115,6 @@
             this.btn_transaction.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_transaction.UseVisualStyleBackColor = true;
             this.btn_transaction.Click += new System.EventHandler(this.btn_transaction_Click);
-            // 
-            // btn_dashboard
-            // 
-            this.btn_dashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_dashboard.FlatAppearance.BorderSize = 0;
-            this.btn_dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_dashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dashboard.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btn_dashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_dashboard.Location = new System.Drawing.Point(0, 80);
-            this.btn_dashboard.Name = "btn_dashboard";
-            this.btn_dashboard.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btn_dashboard.Size = new System.Drawing.Size(220, 60);
-            this.btn_dashboard.TabIndex = 1;
-            this.btn_dashboard.Text = "Dashboard";
-            this.btn_dashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_dashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_dashboard.UseVisualStyleBackColor = true;
-            this.btn_dashboard.Click += new System.EventHandler(this.btn_dashboard_Click);
             // 
             // pnl_logo
             // 
@@ -265,8 +244,6 @@
 
         private System.Windows.Forms.Panel pnl_menu;
         private System.Windows.Forms.Panel pnl_logo;
-        private System.Windows.Forms.Button btn_dashboard;
-        private System.Windows.Forms.Button btn_contact;
         private System.Windows.Forms.Button btn_category;
         private System.Windows.Forms.Button btn_transaction;
         private System.Windows.Forms.Panel pnl_titlebar;
@@ -276,5 +253,6 @@
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.Button btn_minimize;
         private System.Windows.Forms.Button btn_maximize;
+        private System.Windows.Forms.Button btn_budget;
     }
 }

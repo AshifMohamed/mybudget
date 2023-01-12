@@ -33,8 +33,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.7.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,10 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\Interface\IContactController.cs" />
+    <Compile Include="Controllers\Interface\IBudgetController.cs" />
     <Compile Include="Controllers\Interface\IDashboardController.cs" />
     <Compile Include="Controllers\Interface\ILoginController.cs" />
     <Compile Include="Controllers\Interface\ICategoryController.cs" />
@@ -59,8 +73,8 @@
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Core\ThemeColor.cs" />
     <Compile Include="Core\ThemeConstant.cs" />
+    <Compile Include="Data\BudgetData.cs" />
     <Compile Include="Data\CategoryData.cs" />
-    <Compile Include="Data\ContactData.cs" />
     <Compile Include="Data\CreateData.cs" />
     <Compile Include="Data\LoginData.cs" />
     <Compile Include="Data\TransactionData.cs" />
@@ -73,32 +87,32 @@
     <Compile Include="Framework\Controls\MyBudgetDataGrid.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Transactions\CreditTransaction.cs" />
     <Compile Include="Models\Transactions\RecurTransaction.cs" />
     <Compile Include="Models\Transactions\BasicTransaction.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BudgetService.cs" />
     <Compile Include="Services\CategoryService.cs" />
-    <Compile Include="Services\ContactService.cs" />
-    <Compile Include="Services\DashboardService.cs" />
     <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\TransactionService.cs" />
+    <Compile Include="Views\BudgetView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BudgetView.Designer.cs">
+      <DependentUpon>BudgetView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BudgetViewData.cs" />
     <Compile Include="Views\CategoryView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\CategoryView.Designer.cs">
       <DependentUpon>CategoryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ContactView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ContactView.Designer.cs">
-      <DependentUpon>ContactView.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Views\Interface\IBudgetView.cs" />
     <Compile Include="Views\Transaction\TransactionViewData.cs" />
     <Compile Include="Views\Transaction\UpdateTransaction.cs">
       <SubType>Form</SubType>
@@ -106,17 +120,17 @@
     <Compile Include="Views\Transaction\UpdateTransaction.Designer.cs">
       <DependentUpon>UpdateTransaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdateBudget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UpdateBudget.Designer.cs">
+      <DependentUpon>UpdateBudget.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdateCategory.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\UpdateCategory.Designer.cs">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DashboardView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\DashboardView.Designer.cs">
-      <DependentUpon>DashboardView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.cs">
       <SubType>Form</SubType>
@@ -125,7 +139,6 @@
       <DependentUpon>HomeView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Interface\ICategoryView.cs" />
-    <Compile Include="Views\Interface\IContactView.cs" />
     <Compile Include="Views\Interface\IDashboardView.cs" />
     <Compile Include="Views\Interface\ILoginVew.cs" />
     <Compile Include="Views\Interface\ITransactionView.cs" />
@@ -147,12 +160,6 @@
     <Compile Include="Views\Transaction\TransactionView.Designer.cs">
       <DependentUpon>TransactionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UpdateContact.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\UpdateContact.Designer.cs">
-      <DependentUpon>UpdateContact.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -163,20 +170,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\BudgetView.resx">
+      <DependentUpon>BudgetView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\CategoryView.resx">
       <DependentUpon>CategoryView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ContactView.resx">
-      <DependentUpon>ContactView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Transaction\UpdateTransaction.resx">
       <DependentUpon>UpdateTransaction.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\UpdateBudget.resx">
+      <DependentUpon>UpdateBudget.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\UpdateCategory.resx">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\DashboardView.resx">
-      <DependentUpon>DashboardView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\HomeView.resx">
       <DependentUpon>HomeView.cs</DependentUpon>
@@ -190,9 +197,7 @@
     <EmbeddedResource Include="Views\Transaction\TransactionView.resx">
       <DependentUpon>TransactionView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UpdateContact.resx">
-      <DependentUpon>UpdateContact.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

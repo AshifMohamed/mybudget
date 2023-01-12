@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MyBudget.Data.TransactionData;
 using static MyBudget.Models.Transactions.BasicTransaction;
 
 namespace MyBudget.Services
@@ -46,6 +47,11 @@ namespace MyBudget.Services
             TRANSACTION_TYPE type, bool isRecurring, bool isCredit)
         {
             return TransactionData.GetFilteredData(start, end, type, isRecurring, isCredit);
+        }
+
+        public IList<CategoryMonthTotalData> GetTotalForCategory(int month)
+        {
+            return TransactionData.GetTotalForCategory(month);
         }
     }
 }

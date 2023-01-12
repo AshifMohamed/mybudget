@@ -91,38 +91,12 @@ namespace MyBudget.Views
 
         private void HomeView_Load(object sender, EventArgs e)
         {
-            btn_dashboard.PerformClick();
-        }
-
-        private void btn_dashboard_Click(object sender, EventArgs e)
-        {
-            if (!isSameMenu((Button)sender))
-            {
-                DashboardView dashboardView = new DashboardView();
-
-                IDashboardController dashboardController = new DashboardController(dashboardView);
-
-                OpenChildForm(dashboardView, sender);
-            }
+            btn_transaction.PerformClick();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btn_contact_Click(object sender, EventArgs e)
-        {
-            if (!isSameMenu((Button)sender))
-            {
-                ContactView contactView = new ContactView();
-
-                IContactController contactController = new ContactController(contactView);
-                contactController.InitializeData();
-                contactController.LoadContacts();
-
-                OpenChildForm(contactView, sender);
-            }
         }
 
         private bool isSameMenu(Button btn)
@@ -204,10 +178,8 @@ namespace MyBudget.Views
             if (!isSameMenu((Button)sender))
             {
                 ICategoryController categoryController = new CategoryController();
-                IContactController contactController = new ContactController();
 
-                TransactionView transactionView = new TransactionView(categoryController.GetCategories(),
-                                                                        contactController.GetContacts());
+                TransactionView transactionView = new TransactionView(categoryController.GetCategories());
 
                 ITransactionController transactionController = new TransactionController(transactionView);
                 transactionController.InitializeData();
@@ -228,6 +200,21 @@ namespace MyBudget.Views
                 _categoryController.LoadCategories();
 
                 OpenChildForm(categoryView, sender);
+            }
+        }
+
+        private void btn_budget_Click(object sender, EventArgs e)
+        {
+            if (!isSameMenu((Button)sender))
+            {
+                ICategoryController _categoryController = new CategoryController();
+                BudgetView budgetView = new BudgetView(_categoryController.GetCategories());
+
+                IBudgetController _budgetController = new BudgetController(budgetView);
+                _budgetController.InitializeData();
+                _budgetController.LoadBudgets();
+
+                OpenChildForm(budgetView, sender);
             }
         }
     }

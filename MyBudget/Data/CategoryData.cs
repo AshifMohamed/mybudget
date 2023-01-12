@@ -37,7 +37,7 @@ namespace MyBudget.Data
         {
             bool isExist = Get().Any(c => c.Name.Equals(category.Name));
 
-            if (!isExist)
+            if (isExist)
             {
                 Category updateCategory = Get().First(c => c.Id == category.Id);
 

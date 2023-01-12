@@ -82,8 +82,6 @@ namespace MyBudget.Views.Transaction
             ComboBox category = new ComboBox();
             RichTextBox amount = new RichTextBox();
             RichTextBox description = new RichTextBox();
-            ComboBox contact = new ComboBox();
-            DateTimePicker expectedDate = new DateTimePicker();
             ComboBox cycle = new ComboBox();
             DateTimePicker endDate = new DateTimePicker();
 
@@ -122,21 +120,6 @@ namespace MyBudget.Views.Transaction
             description.Text = "";
             description.Height = 28;
 
-            contact.Dock = DockStyle.Fill;
-            contact.Font = DEFAULT_FONT;
-            contact.FormattingEnabled = true;
-            contact.Height = 28;
-
-            contact.DisplayMember = "Name";
-            contact.ValueMember = "Id";
-            contact.DataSource = new List<Contact>(_transactionView.Contacts); 
-
-            expectedDate.Dock = DockStyle.Fill;
-            expectedDate.Font = DEFAULT_FONT;
-            expectedDate.Height = 28;
-            expectedDate.Format = DateTimePickerFormat.Custom;
-            expectedDate.CustomFormat = DATE_FORMAT;
-
             cycle.Dock = DockStyle.Fill;
             cycle.Font = DEFAULT_FONT;
             cycle.FormattingEnabled = true;
@@ -150,8 +133,6 @@ namespace MyBudget.Views.Transaction
             endDate.CustomFormat = DATE_FORMAT;
 
             //disable additional controls
-            contact.Enabled = false;
-            expectedDate.Enabled = false;
             cycle.Enabled = false;
             endDate.Enabled = false;
 
@@ -161,8 +142,6 @@ namespace MyBudget.Views.Transaction
                 type,
                 category,
                 amount,
-                contact,
-                expectedDate,
                 cycle,
                 endDate
             };
@@ -193,13 +172,6 @@ namespace MyBudget.Views.Transaction
                         tableLayoutPanel1.GetControlFromPosition(7, row).Enabled = true;
                         break;
 
-                    case TransactionViewData.TYPE.PAYABALE:
-                    case TransactionViewData.TYPE.RECEIVABLE:
-                        tableLayoutPanel1.GetControlFromPosition(4, row).Enabled = true;
-                        tableLayoutPanel1.GetControlFromPosition(5, row).Enabled = true;
-                        tableLayoutPanel1.GetControlFromPosition(6, row).Enabled = false;
-                        tableLayoutPanel1.GetControlFromPosition(7, row).Enabled = false;
-                        break;
                     default:
                         for (int col = 5; col < tableLayoutPanel1.ColumnCount; col++)
                         {
@@ -312,7 +284,6 @@ namespace MyBudget.Views.Transaction
             if (Enum.TryParse(type, out TransactionViewData.TYPE transactionType))
             {
                 income_expense_type = transactionType.Equals(TransactionViewData.TYPE.INCOME) ||
-                                      transactionType.Equals(TransactionViewData.TYPE.RECEIVABLE) ||
                                       transactionType.Equals(TransactionViewData.TYPE.RECURRING_INCOME)
                                       ? TRANSACTION_TYPE.INCOME : TRANSACTION_TYPE.EXPENSE;
 
@@ -325,17 +296,6 @@ namespace MyBudget.Views.Transaction
                     DateTime endDate = endDateControl.Value;
 
                     transaction = new RecurTransaction(0, amount, date, income_expense_type, category, cycle, endDate);
-                }
-                else if (transactionType.Equals(TransactionViewData.TYPE.PAYABALE) ||
-                    transactionType.Equals(TransactionViewData.TYPE.RECEIVABLE))
-                {
-                    ComboBox contactControl = (ComboBox)row.ElementAt((int)Fields.CONTACT);
-                    Contact contact = (Contact)contactControl.SelectedItem;
-                    DateTimePicker expectedDateControl = (DateTimePicker)row.ElementAt((int)Fields.EXPECTED_DATE);
-                    DateTime expectedDate = expectedDateControl.Value;
-
-                    transaction = new CreditTransaction(0, amount, date, income_expense_type, category, contact, expectedDate);
-
                 }
                 else
                 {

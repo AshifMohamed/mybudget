@@ -139,6 +139,29 @@ namespace MyBudget.Data
 
             return chartData;
         }
+
+        public static IList<CategoryMonthTotalData> GetTotalForCategory(int month)
+        {
+            List<CategoryMonthTotalData> chartData = Get()
+            .Where(w =>
+                (!(w is RecurTransaction)) &&
+                (w.Date.Month == month) &&
+                (w.Date.Year == DateTime.Now.Year) &&
+                (w.Type == TRANSACTION_TYPE.EXPENSE)
+            )
+            .GroupBy(t => new
+            {
+                category = t.Category.Name
+            })
+            .Select(chart => new CategoryMonthTotalData()
+            {
+                Category = chart.Key.category,
+                Total = chart.Sum(c => c.Amount),
+            })
+              .ToList();
+
+            return chartData;
+        }
         public static IList<BasicTransaction> GetTransactions(DateTime start, DateTime end)
         {
 
@@ -157,7 +180,6 @@ namespace MyBudget.Data
             List<BasicTransaction> filteredData = Get()
             .Where(t =>
                 ((t is RecurTransaction) == isRecurring) &&
-                ((t is CreditTransaction) == isCredit) &&
                 (t.Type == type) &&
 
                 (t is RecurTransaction r ? r.ExpectedEndDate >= end :

@@ -16,7 +16,6 @@ namespace MyBudget.Views.Interface
         void AddTransactions(IList<BasicTransaction> transactions);
         void UpdateTransaction(BasicTransaction transaction);
         void LoadTransactions(IList<TransactionViewData> transactionList);
-        IList<Contact> Contacts { get; }
         IList<Category> Categories { get; }  
     }
 }

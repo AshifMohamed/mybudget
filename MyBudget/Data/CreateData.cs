@@ -18,12 +18,10 @@ namespace MyBudget.Data
 
             IList<BasicTransaction> basicTransactions = CreateBasicTransactions(categories);
             IList<BasicTransaction> recurTransactions = CreateRecurTransactions(categories);
-            IList<BasicTransaction> creditTransactions = CreateCreditTransactions(categories);
 
             List<BasicTransaction> data = new List<BasicTransaction>();
             data.AddRange(basicTransactions);
             data.AddRange(recurTransactions);
-            data.AddRange(creditTransactions);
 
             return data;
         }
@@ -92,21 +90,6 @@ namespace MyBudget.Data
                 DateTime.Parse("12/25/2022"));
 
             return new List<BasicTransaction>() { tr1, tr2 };
-        }
-
-        private static IList<BasicTransaction> CreateCreditTransactions(IList<Category> categories)
-        {
-            IList<Contact> contacts = ContactData.Get();
-
-            CreditTransaction cr1 = new CreditTransaction(12, 7500, DateTime.Parse("12/31/2021"), 
-                TRANSACTION_TYPE.EXPENSE, categories.ElementAt(8), contacts.ElementAt(0),
-                DateTime.Parse("01/05/2022"));
-
-            CreditTransaction cr2 = new CreditTransaction(14, 3600, DateTime.Parse("1/4/2022"),
-                TRANSACTION_TYPE.INCOME, categories.ElementAt(1), contacts.ElementAt(1),
-                DateTime.Parse("1/15/2022"));
-
-            return new List<BasicTransaction>() { cr1, cr2 };
         }
     }
 }

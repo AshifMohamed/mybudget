@@ -19,9 +19,6 @@ namespace MyBudget.Views.Transaction
     public partial class TransactionView : Form, ITransactionView
     {
         ITransactionController _controller;
-
-        public IList<Contact> Contacts { get; }
-
         public IList<Category> Categories { get; }
 
         public TransactionView()
@@ -52,10 +49,9 @@ namespace MyBudget.Views.Transaction
             pnl_date_container.BackColor = ThemeColor.ActionPanelColor;
         }
 
-        public TransactionView(IList<Category> categories, IList<Contact> contacts) : this()
+        public TransactionView(IList<Category> categories) : this()
         {
             Categories = categories;
-            Contacts = contacts;
         }
         private void pnl_control_Paint(object sender, PaintEventArgs e)
         {
@@ -229,14 +225,6 @@ namespace MyBudget.Views.Transaction
                     case TransactionViewData.TYPE.RECURRING_EXPENSE:
                         _controller.GetFilteredTransactions(date_start.Value, date_end.Value,
                            BasicTransaction.TRANSACTION_TYPE.EXPENSE, true, false);
-                        break;
-                    case TransactionViewData.TYPE.PAYABALE:
-                        _controller.GetFilteredTransactions(date_start.Value, date_end.Value,
-                           BasicTransaction.TRANSACTION_TYPE.EXPENSE, false, true);
-                        break;
-                    case TransactionViewData.TYPE.RECEIVABLE:
-                        _controller.GetFilteredTransactions(date_start.Value, date_end.Value,
-                          BasicTransaction.TRANSACTION_TYPE.INCOME, false, true);
                         break;
                     case TransactionViewData.TYPE.INCOME:
                         _controller.GetFilteredTransactions(date_start.Value, date_end.Value,

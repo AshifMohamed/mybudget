@@ -32,9 +32,6 @@ namespace MyBudget.Views.Transaction
         {
             cmb_category.DisplayMember = "Name";
             cmb_category.ValueMember = "Id";
-            cmb_contact.DisplayMember = "Name";
-            cmb_contact.ValueMember = "Id";
-            cmb_contact.DataSource = new List<Contact>(_transactionView.Contacts);
             cmb_category.DataSource = new List<Category>(_transactionView.Categories);
             cmb_type.Items.AddRange(Enum.GetNames(typeof(TransactionViewData.TYPE)));
             cmb_cycle.Items.AddRange(Enum.GetNames(typeof(TransactionCycle)));
@@ -51,30 +48,17 @@ namespace MyBudget.Views.Transaction
             date_transaction.Value = _transaction.Date;
             date_transaction.Format = DateTimePickerFormat.Custom;
             date_transaction.CustomFormat = ThemeConstant.DATE_FORMAT;
-            date_expected.Format = DateTimePickerFormat.Custom;
-            date_expected.CustomFormat = ThemeConstant.DATE_FORMAT;
+           
             date_end.Format = DateTimePickerFormat.Custom;
             date_end.CustomFormat = ThemeConstant.DATE_FORMAT;
             cmb_category.SelectedValue = _transaction.Category.Id;
 
             TransactionViewData.TYPE type;
-            if (_transaction is CreditTransaction creditTransaction)
-            {
-                type = creditTransaction.Type == TRANSACTION_TYPE.INCOME ?
-                                            TransactionViewData.TYPE.RECEIVABLE : 
-                                            TransactionViewData.TYPE.PAYABALE;
-                EnablePanelContents(pnl_recur, false);
-                cmb_contact.SelectedValue = creditTransaction.Contact.Id;
-
-                //cmb_contact.SelectedIndex = cmb_contact.Items.IndexOf(creditTransaction.Contact);
-                date_expected.Value = creditTransaction.ExpectedDate;
-            }
-            else if(_transaction is RecurTransaction recurTransaction)
+            if(_transaction is RecurTransaction recurTransaction)
             {
                 type = recurTransaction.Type == TRANSACTION_TYPE.INCOME ?
                                             TransactionViewData.TYPE.RECURRING_INCOME :
                                             TransactionViewData.TYPE.RECURRING_EXPENSE;
-                EnablePanelContents(pnl_contact, false);
 
                 string cycle = recurTransaction.Cycle.ToString();
                 cmb_cycle.SelectedItem = cycle;
@@ -86,7 +70,6 @@ namespace MyBudget.Views.Transaction
                 type = _transaction.Type == TRANSACTION_TYPE.INCOME ?
                                             TransactionViewData.TYPE.INCOME :
                                             TransactionViewData.TYPE.EXPENSE;
-                EnablePanelContents(pnl_contact, false);
                 EnablePanelContents(pnl_recur, false);
             }
 
@@ -114,16 +97,9 @@ namespace MyBudget.Views.Transaction
                     case TransactionViewData.TYPE.RECURRING_INCOME:
                     case TransactionViewData.TYPE.RECURRING_EXPENSE:
                         EnablePanelContents(pnl_recur, true);
-                        EnablePanelContents(pnl_contact, false);
                         break;
-
-                    case TransactionViewData.TYPE.PAYABALE:
-                    case TransactionViewData.TYPE.RECEIVABLE:
-                        EnablePanelContents(pnl_contact, true);
-                        EnablePanelContents(pnl_recur, false);
-                        break;
+ 
                     default:
-                        EnablePanelContents(pnl_contact, false);
                         EnablePanelContents(pnl_recur, false);
                         break;
                 }
@@ -189,7 +165,6 @@ namespace MyBudget.Views.Transaction
             if (Enum.TryParse(type, out TransactionViewData.TYPE transactionType))
             {
                 income_expense_type = transactionType.Equals(TransactionViewData.TYPE.INCOME) ||
-                                      transactionType.Equals(TransactionViewData.TYPE.RECEIVABLE) ||
                                       transactionType.Equals(TransactionViewData.TYPE.RECURRING_INCOME)
                                       ? TRANSACTION_TYPE.INCOME : TRANSACTION_TYPE.EXPENSE;
 
@@ -200,15 +175,6 @@ namespace MyBudget.Views.Transaction
                     DateTime endDate = date_end.Value;
 
                     transaction = new RecurTransaction(0, amount, date, income_expense_type, category, cycle, endDate);
-                }
-                else if (transactionType.Equals(TransactionViewData.TYPE.PAYABALE) ||
-                    transactionType.Equals(TransactionViewData.TYPE.RECEIVABLE))
-                {
-                    Contact contact = (Contact)cmb_contact.SelectedItem;
-                    DateTime expectedDate = date_expected.Value;
-
-                    transaction = new CreditTransaction(0, amount, date, income_expense_type, category, contact, expectedDate);
-
                 }
                 else
                 {

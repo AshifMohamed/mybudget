@@ -39,11 +39,6 @@
             this.cmb_cycle = new System.Windows.Forms.ComboBox();
             this.lbl_end = new System.Windows.Forms.Label();
             this.lbl_cycle = new System.Windows.Forms.Label();
-            this.pnl_contact = new System.Windows.Forms.Panel();
-            this.date_expected = new System.Windows.Forms.DateTimePicker();
-            this.lbl_contact = new System.Windows.Forms.Label();
-            this.lbl_expected = new System.Windows.Forms.Label();
-            this.cmb_contact = new System.Windows.Forms.ComboBox();
             this.pnl_basic = new System.Windows.Forms.Panel();
             this.lbl_amount = new System.Windows.Forms.Label();
             this.txt_amount = new System.Windows.Forms.TextBox();
@@ -58,7 +53,6 @@
             this.pnl_content.SuspendLayout();
             this.pnl_add_transaction_container.SuspendLayout();
             this.pnl_recur.SuspendLayout();
-            this.pnl_contact.SuspendLayout();
             this.pnl_basic.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,7 +128,6 @@
             // pnl_add_transaction_container
             // 
             this.pnl_add_transaction_container.Controls.Add(this.pnl_recur);
-            this.pnl_add_transaction_container.Controls.Add(this.pnl_contact);
             this.pnl_add_transaction_container.Location = new System.Drawing.Point(374, 12);
             this.pnl_add_transaction_container.Name = "pnl_add_transaction_container";
             this.pnl_add_transaction_container.Size = new System.Drawing.Size(374, 223);
@@ -147,7 +140,7 @@
             this.pnl_recur.Controls.Add(this.lbl_end);
             this.pnl_recur.Controls.Add(this.lbl_cycle);
             this.pnl_recur.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_recur.Location = new System.Drawing.Point(0, 110);
+            this.pnl_recur.Location = new System.Drawing.Point(0, 0);
             this.pnl_recur.Name = "pnl_recur";
             this.pnl_recur.Size = new System.Drawing.Size(374, 110);
             this.pnl_recur.TabIndex = 16;
@@ -184,52 +177,6 @@
             this.lbl_cycle.Size = new System.Drawing.Size(47, 20);
             this.lbl_cycle.TabIndex = 12;
             this.lbl_cycle.Text = "Cycle";
-            // 
-            // pnl_contact
-            // 
-            this.pnl_contact.Controls.Add(this.date_expected);
-            this.pnl_contact.Controls.Add(this.lbl_contact);
-            this.pnl_contact.Controls.Add(this.lbl_expected);
-            this.pnl_contact.Controls.Add(this.cmb_contact);
-            this.pnl_contact.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_contact.Location = new System.Drawing.Point(0, 0);
-            this.pnl_contact.Name = "pnl_contact";
-            this.pnl_contact.Size = new System.Drawing.Size(374, 110);
-            this.pnl_contact.TabIndex = 14;
-            // 
-            // date_expected
-            // 
-            this.date_expected.Location = new System.Drawing.Point(154, 71);
-            this.date_expected.Name = "date_expected";
-            this.date_expected.Size = new System.Drawing.Size(200, 26);
-            this.date_expected.TabIndex = 12;
-            // 
-            // lbl_contact
-            // 
-            this.lbl_contact.AutoSize = true;
-            this.lbl_contact.Location = new System.Drawing.Point(18, 17);
-            this.lbl_contact.Name = "lbl_contact";
-            this.lbl_contact.Size = new System.Drawing.Size(65, 20);
-            this.lbl_contact.TabIndex = 12;
-            this.lbl_contact.Text = "Contact";
-            // 
-            // lbl_expected
-            // 
-            this.lbl_expected.AutoSize = true;
-            this.lbl_expected.Location = new System.Drawing.Point(18, 76);
-            this.lbl_expected.Name = "lbl_expected";
-            this.lbl_expected.Size = new System.Drawing.Size(115, 20);
-            this.lbl_expected.TabIndex = 13;
-            this.lbl_expected.Text = "Expected Date";
-            this.lbl_expected.Click += new System.EventHandler(this.lbl_expected_Click);
-            // 
-            // cmb_contact
-            // 
-            this.cmb_contact.FormattingEnabled = true;
-            this.cmb_contact.Location = new System.Drawing.Point(154, 14);
-            this.cmb_contact.Name = "cmb_contact";
-            this.cmb_contact.Size = new System.Drawing.Size(200, 28);
-            this.cmb_contact.TabIndex = 13;
             // 
             // pnl_basic
             // 
@@ -329,8 +276,6 @@
             this.pnl_add_transaction_container.ResumeLayout(false);
             this.pnl_recur.ResumeLayout(false);
             this.pnl_recur.PerformLayout();
-            this.pnl_contact.ResumeLayout(false);
-            this.pnl_contact.PerformLayout();
             this.pnl_basic.ResumeLayout(false);
             this.pnl_basic.PerformLayout();
             this.ResumeLayout(false);
@@ -351,13 +296,8 @@
         private System.Windows.Forms.ComboBox cmb_type;
         private System.Windows.Forms.Label lbl_type;
         private System.Windows.Forms.ComboBox cmb_category;
-        private System.Windows.Forms.Panel pnl_contact;
-        private System.Windows.Forms.ComboBox cmb_contact;
-        private System.Windows.Forms.Label lbl_contact;
         private System.Windows.Forms.Panel pnl_basic;
         private System.Windows.Forms.Panel pnl_recur;
-        private System.Windows.Forms.DateTimePicker date_expected;
-        private System.Windows.Forms.Label lbl_expected;
         private System.Windows.Forms.ComboBox cmb_cycle;
         private System.Windows.Forms.Label lbl_cycle;
         private System.Windows.Forms.DateTimePicker date_end;
