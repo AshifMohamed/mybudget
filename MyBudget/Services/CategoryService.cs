@@ -10,6 +10,26 @@ namespace MyBudget.Services
 {
     public class CategoryService
     {
+        private static CategoryService _categoryService;
+        private static readonly object _lock = new object();
+
+        private CategoryService() { }
+
+        public static CategoryService Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_categoryService == null)
+                    {
+                        _categoryService = new CategoryService();
+                    }
+                    return _categoryService;
+                }
+            }
+        }
+
         public void InitializeData()
         {
             CategoryData.InitializeData();

@@ -1,4 +1,5 @@
 ﻿using MyBudget.Models;
+using MyBudget.Views.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace MyBudget.Controllers.Interface
 {
     public interface IBudgetController
     {
+        void SetBudgetView(IBudgetView budgetView);
         void InitializeData();
         void LoadBudgets();
         IList<Budget> GetBudgets();

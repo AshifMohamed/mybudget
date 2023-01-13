@@ -14,20 +14,38 @@ namespace MyBudget.Controllers
 {
     public class BudgetController : IBudgetController
     {
+        private static BudgetController _budgetController;
+        private static readonly object _lock = new object();
         IBudgetView _budgetView;
-        BudgetService _budgetService = new BudgetService();
-        TransactionService _transactionService = new TransactionService();
+        BudgetService _budgetService = BudgetService.Instance;
+        TransactionService _transactionService = TransactionService.Instance;
+
+        public static BudgetController Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_budgetController == null)
+                    {
+                        _budgetController = new BudgetController();
+                    }
+                    return _budgetController;
+                }
+            }
+        }
 
 
-        public BudgetController()
+        private BudgetController()
         {
 
         }
-        public BudgetController(IBudgetView budgetView)
+
+        public void SetBudgetView(IBudgetView budgetView)
         {
             _budgetView = budgetView;
-            _budgetView.SetController(this);
         }
+
         public void AddBudget(Category category, double allocation)
         {
             Budget budget = new Budget("", allocation, category);

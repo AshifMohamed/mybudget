@@ -1,4 +1,5 @@
 ﻿using MyBudget.Models.Transactions;
+using MyBudget.Views.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace MyBudget.Controllers.Interface
 {
     public interface ITransactionController
     {
+        void SetTransactionView(ITransactionView transactionView);
         void InitializeData();
         void LoadTransactions();
 

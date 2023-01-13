@@ -2,9 +2,6 @@
 using MyBudget.Models.Transactions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static MyBudget.Data.TransactionData;
 using static MyBudget.Models.Transactions.BasicTransaction;
 
@@ -12,6 +9,26 @@ namespace MyBudget.Services
 {
     public class TransactionService
     {
+        private static TransactionService _transactionService;
+        private static readonly object _lock = new object();
+
+        private TransactionService() { }
+
+        public static TransactionService Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_transactionService == null)
+                    {
+                        _transactionService = new TransactionService();
+                    }
+                    return _transactionService;
+                }
+            }
+        }
+
         public void InitializeData()
         {
             TransactionData.InitializeData();

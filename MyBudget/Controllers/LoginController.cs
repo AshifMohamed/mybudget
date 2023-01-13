@@ -1,13 +1,6 @@
 ﻿using MyBudget.Controllers.Interface;
-using MyBudget.Data;
 using MyBudget.Services;
-using MyBudget.Views;
 using MyBudget.Views.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyBudget.Controllers
 {
@@ -20,7 +13,7 @@ namespace MyBudget.Controllers
         {
             _loginView = loginView;
             _loginView.SetController(this);
-            _loginService = new LoginService();
+            _loginService = LoginService.Instance;
         }
 
         public void InitializeData()

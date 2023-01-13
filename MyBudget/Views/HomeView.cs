@@ -177,11 +177,13 @@ namespace MyBudget.Views
         {
             if (!isSameMenu((Button)sender))
             {
-                ICategoryController categoryController = new CategoryController();
+                ICategoryController categoryController = CategoryController.Instance;
 
                 TransactionView transactionView = new TransactionView(categoryController.GetCategories());
 
-                ITransactionController transactionController = new TransactionController(transactionView);
+                ITransactionController transactionController = TransactionController.Instance;
+                transactionController.SetTransactionView(transactionView);
+                transactionView.SetController(transactionController);
                 transactionController.InitializeData();
                 //transactionController.LoadTransactions();
 
@@ -195,7 +197,9 @@ namespace MyBudget.Views
             {
                 CategoryView categoryView = new CategoryView();
 
-                ICategoryController _categoryController = new CategoryController(categoryView);
+                ICategoryController _categoryController = CategoryController.Instance;
+                _categoryController.setCategoryView(categoryView);
+                categoryView.SetController(_categoryController);
                 _categoryController.InitializeData();
                 _categoryController.LoadCategories();
 
@@ -207,10 +211,12 @@ namespace MyBudget.Views
         {
             if (!isSameMenu((Button)sender))
             {
-                ICategoryController _categoryController = new CategoryController();
+                ICategoryController _categoryController = CategoryController.Instance;
                 BudgetView budgetView = new BudgetView(_categoryController.GetCategories());
 
-                IBudgetController _budgetController = new BudgetController(budgetView);
+                IBudgetController _budgetController = BudgetController.Instance;
+                _budgetController.SetBudgetView(budgetView);
+                budgetView.SetController(_budgetController);
                 _budgetController.InitializeData();
                 _budgetController.LoadBudgets();
 

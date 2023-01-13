@@ -12,17 +12,33 @@ namespace MyBudget.Controllers
 {
     public class CategoryController : ICategoryController
     {
+        private static CategoryController _categoryController;
+        private static readonly object _lock = new object();
         ICategoryView _categoryView;
-        CategoryService _categoryService = new CategoryService();
+        CategoryService _categoryService = CategoryService.Instance;
 
-        public CategoryController()
+        private CategoryController()
         {
 
         }
-        public CategoryController(ICategoryView categoryView)
+        public static CategoryController Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_categoryController == null)
+                    {
+                        _categoryController = new CategoryController();
+                    }
+                    return _categoryController;
+                }
+            }
+        }
+
+        public void setCategoryView(ICategoryView categoryView)
         {
             _categoryView = categoryView;
-            _categoryView.SetController(this);
         }
 
         public void AddCategory(string name)

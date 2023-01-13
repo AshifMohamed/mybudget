@@ -9,6 +9,26 @@ namespace MyBudget.Services
 {
     public class LoginService
     {
+        private static LoginService _loginService;
+        private static readonly object _lock = new object();
+
+        private LoginService() { }
+
+        public static LoginService Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_loginService == null)
+                    {
+                        _loginService = new LoginService();
+                    }
+                    return _loginService;
+                }
+            }
+        }
+
         public void InitializeData()
         {
             LoginData.InitializeData();

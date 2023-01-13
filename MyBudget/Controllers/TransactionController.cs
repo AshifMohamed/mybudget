@@ -7,25 +7,41 @@ using MyBudget.Views.Transaction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyBudget.Controllers
 {
     public class TransactionController : ITransactionController
     {
+        private static TransactionController _transactionController;
+        private static readonly object _lock = new object();
         ITransactionView _transactionView;
-        TransactionService _transactionService = new TransactionService();
+        TransactionService _transactionService = TransactionService.Instance;
 
-        public TransactionController()
+        public static TransactionController Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_transactionController == null)
+                    {
+                        _transactionController = new TransactionController();
+                    }
+                    return _transactionController;
+                }
+            }
+        }
+
+        private TransactionController()
         {
 
         }
-        public TransactionController(ITransactionView transactionView)
+
+        public void SetTransactionView(ITransactionView transactionView)
         {
             _transactionView = transactionView;
-            _transactionView.SetController(this);
         }
+
         public void AddTransactions(IList<BasicTransaction> transactions)
         {
             _transactionService.AddTransactions(transactions);
@@ -89,6 +105,6 @@ namespace MyBudget.Controllers
             }).ToList();
         }
 
-        
+
     }
 }

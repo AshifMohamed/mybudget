@@ -1,4 +1,5 @@
-﻿using MyBudget.Data;
+﻿using MyBudget.Controllers;
+using MyBudget.Data;
 using MyBudget.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,25 @@ namespace MyBudget.Services
 {
     public class BudgetService
     {
+        private static BudgetService _budgetService;
+        private static readonly object _lock = new object();
+
+        private BudgetService() { }
+        public static BudgetService Instance
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_budgetService == null)
+                    {
+                        _budgetService = new BudgetService();
+                    }
+                    return _budgetService;
+                }
+            }
+        }
+
         public void InitializeData()
         {
             BudgetData.InitializeData();
