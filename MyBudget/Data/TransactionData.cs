@@ -57,7 +57,10 @@ namespace MyBudget.Data
 
         public static BasicTransaction Add(BasicTransaction transaction)
         {
-            int newId = Get().Last().Id + 1;
+            //int newId = Get().Last().Id + 1;
+
+            Random rnd = new Random();
+            int newId = rnd.Next(1000, 250000);
             transaction.Id = newId;
             data.Add(transaction);
 

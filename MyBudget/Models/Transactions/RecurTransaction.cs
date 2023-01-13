@@ -8,6 +8,10 @@ namespace MyBudget.Models.Transactions
 {
     public class RecurTransaction : BasicTransaction
     {
+        public RecurTransaction()
+        {
+            
+        }
         public RecurTransaction(int id, double amount, DateTime date, TRANSACTION_TYPE type, Category category, TransactionCycle cycle, DateTime expectedEndDate) : base(id, amount, date, type, category)
         {
             Cycle = cycle;

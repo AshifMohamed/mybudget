@@ -25,9 +25,6 @@ namespace MyBudget
 
             InitializeData();
 
-            LoginView loginView = new LoginView();
-            ILoginController loginController = new LoginController(loginView);
-            loginController.InitializeData();
             Application.Run(new HomeView());
         }
 

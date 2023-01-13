@@ -298,11 +298,21 @@ namespace MyBudget.Views.Transaction
                     DateTimePicker endDateControl = (DateTimePicker)row.ElementAt((int)Fields.END_DATE);
                     DateTime endDate = endDateControl.Value;
 
-                    transaction = new RecurTransaction(0, amount, date, income_expense_type, category, cycle, endDate);
+                    transaction = new TransactionBuilder().WithId(0)
+                        .WithAmount(amount).WithDate(date)
+                        .WithType(income_expense_type)
+                        .WithCategory(category).WithCycle(cycle)
+                        .WithEndDate(endDate).BuildRecur();
+
+                    //transaction = new RecurTransaction(0, amount, date, income_expense_type, category, cycle, endDate);
                 }
                 else
                 {
-                    transaction = new BasicTransaction(0, amount, date, income_expense_type, category);
+                    transaction = new TransactionBuilder().WithId(0)
+                        .WithAmount(amount).WithDate(date)
+                        .WithType(income_expense_type)
+                        .WithCategory(category).BuildBasic(); 
+                    //transaction = new BasicTransaction(0, amount, date, income_expense_type, category);
                 }
 
             }

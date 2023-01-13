@@ -27,7 +27,6 @@ namespace MyBudget.Models.Transactions
             Type = type;
             Category = category;
         }
-
         public BasicTransaction()
         {
 
@@ -40,6 +39,6 @@ namespace MyBudget.Models.Transactions
         public static BasicTransaction Income(int id, double amount, DateTime date, Category category)
         {
             return new BasicTransaction(id, amount, date, TRANSACTION_TYPE.INCOME, category);
-        }
+        } 
     }
 }

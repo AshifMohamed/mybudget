@@ -42,7 +42,6 @@ C:\Studies\MSc\ASD\cw2\MyBudget\MyBudget\obj\Debug\MyBudget.Views.CategoryView.r
 C:\Studies\MSc\ASD\cw2\MyBudget\MyBudget\obj\Debug\MyBudget.Views.Transaction.UpdateTransaction.resources
 C:\Studies\MSc\ASD\cw2\MyBudget\MyBudget\obj\Debug\MyBudget.Views.UpdateCategory.resources
 C:\Studies\MSc\ASD\cw2\MyBudget\MyBudget\obj\Debug\MyBudget.Views.HomeView.resources
-C:\Studies\MSc\ASD\cw2\MyBudget\MyBudget\obj\Debug\MyBudget.Views.LoginView.resources
 C:\Studies\MSc\ASD\cw2\MyBudget\MyBudget\obj\Debug\MyBudget.Views.Transaction.AddTransaction.resources
 C:\Studies\MSc\ASD\cw2\MyBudget\MyBudget\obj\Debug\MyBudget.Views.Transaction.TransactionView.resources
 C:\Studies\MSc\ASD\cw2\MyBudget\MyBudget\obj\Debug\MyBudget.csproj.GenerateResource.cache
