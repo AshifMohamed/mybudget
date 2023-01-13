@@ -31,8 +31,8 @@ namespace MyBudget.Views.Transaction
             TYPE,
             CATEGORY,
             AMOUNT,
-            CONTACT,
-            EXPECTED_DATE,
+            //CONTACT,
+            //EXPECTED_DATE,
             CYCLE,
             END_DATE
         }
@@ -166,14 +166,17 @@ namespace MyBudget.Views.Transaction
                 {
                     case TransactionViewData.TYPE.RECURRING_INCOME:
                     case TransactionViewData.TYPE.RECURRING_EXPENSE:
-                        tableLayoutPanel1.GetControlFromPosition(4, row).Enabled = false;
-                        tableLayoutPanel1.GetControlFromPosition(5, row).Enabled = false;
-                        tableLayoutPanel1.GetControlFromPosition(6, row).Enabled = true;
-                        tableLayoutPanel1.GetControlFromPosition(7, row).Enabled = true;
+                        tableLayoutPanel1.GetControlFromPosition(4, row).Enabled = true;
+                        tableLayoutPanel1.GetControlFromPosition(5, row).Enabled = true;
+                     
+                        //tableLayoutPanel1.GetControlFromPosition(4, row).Enabled = false;
+                        //tableLayoutPanel1.GetControlFromPosition(5, row).Enabled = false;
+                        //tableLayoutPanel1.GetControlFromPosition(6, row).Enabled = true;
+                        //tableLayoutPanel1.GetControlFromPosition(7, row).Enabled = true;
                         break;
 
                     default:
-                        for (int col = 5; col < tableLayoutPanel1.ColumnCount; col++)
+                        for (int col = 4; col < tableLayoutPanel1.ColumnCount; col++)
                         {
                             tableLayoutPanel1.GetControlFromPosition(col, row).Enabled = false;
                         }
